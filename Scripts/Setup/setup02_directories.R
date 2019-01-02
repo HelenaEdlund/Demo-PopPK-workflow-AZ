@@ -76,4 +76,4 @@ list_directories <- function(make = F){
   return(all_dir)
 } 
 
-all_dir <- project_dirs()
+all_dir <- list_directories()

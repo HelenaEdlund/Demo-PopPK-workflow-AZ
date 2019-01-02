@@ -23,6 +23,7 @@ library(pmxplore)
 
 # Tidyverse and plotting
 library(tidyverse)
+library(stringr)
 library(gridExtra)
 library(GGally)
 

@@ -95,5 +95,7 @@ labs_conc <- paste0(drug_name," concentration (", dv_unit,")")
 # Re-occuring x-axis breaks
 tapd_breaks <- c(0, 2, 4, 6, 8, seq(from=12, to=200, by=6))
 
-############ Save environment ############
+# ------------------------------------------------------------------
+#  Save environment 
+# ------------------------------------------------------------------
 save.image(file = file.path("Scripts",'Setup',"setup_variables.RData"))
