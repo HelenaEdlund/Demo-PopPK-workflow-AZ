@@ -11,7 +11,7 @@ make_project(proj_name = "~/Demo-PopPK-workflow-AZ")
 
 
 # 2. Download templates for population PK workflow
-template_download(overwrite = T)
+template_download(overwrite = T) # overwrite does not seem to work
 
 
 # 3. Write source data and dataspec to file
