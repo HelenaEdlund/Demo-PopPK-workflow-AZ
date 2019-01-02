@@ -6,8 +6,10 @@
 # Description: "Make-file" for population PK analysis workflow
 # Dependencies: None
 ###################################################
-# When starting a new project, run make_project() and open the 
+# When starting a new project, run NMprojectAZ::make_project() and open the 
 # project with the OpenProject.Rproj
+
+library(pmworkbench)
 
 # All programs that needs to be executed are "sourced" below in the order they should be 
 # executed. 
