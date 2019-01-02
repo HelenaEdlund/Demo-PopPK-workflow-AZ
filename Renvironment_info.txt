@@ -1,0 +1,44 @@
+Created at 2019-01-02 18:13:24 by kfqk581
+
+R version 3.4.1 (2017-06-30)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS: /opt/scp/software/mro/3.4.1-foss-2017a/lib64/R/lib/libRblas.so
+LAPACK: /opt/scp/software/mro/3.4.1-foss-2017a/lib64/R/lib/libRlapack.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8       
+ [4] LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
+[10] LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+character(0)
+
+other attached packages:
+ [1] pmworkbench_0.1.0.9001 rmarkdown_1.5          devtools_1.13.0        rprojroot_1.2         
+ [5] knitr_1.15.1           NMproject_0.3.1.9000   pmxplore_0.1.0         tidyverse_1.1.1       
+ [9] stringr_1.2.0          gridExtra_2.2.1        GGally_1.3.2           zoo_1.8-0             
+[13] PKNCA_0.8.1           
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_0.12.16         vcd_1.4-3            lubridate_1.6.0      mvtnorm_1.0-6       
+ [5] lattice_0.20-35      tidyr_0.8.0          digest_0.6.12        assertthat_0.2.0    
+ [9] RevoUtilsMath_10.0.0 lmtest_0.9-35        psych_1.7.5          R6_2.2.2            
+[13] cellranger_1.1.0     plyr_1.8.4           backports_1.0.5      httr_1.3.1          
+[17] ggplot2_3.0.0        utils_3.4.1          rlang_0.2.1          lazyeval_0.2.0      
+[21] readxl_1.0.0         splines2_0.2.8       splines_3.4.1        RevoUtils_10.0.5    
+[25] readr_1.1.1          foreign_0.8-69       munsell_0.4.3        broom_0.4.2         
+[29] compiler_3.4.1       modelr_0.1.1         pkgconfig_2.0.1      stats_3.4.1         
+[33] mnormt_1.5-5         tibble_1.3.4         grDevices_3.4.1      reshape_0.8.6       
+[37] dplyr_0.7.4          withr_2.1.2          MASS_7.3-47          grid_3.4.1          
+[41] nlme_3.1-131         jsonlite_1.5         gtable_0.2.0         git2r_0.19.0        
+[45] magrittr_1.5         datasets_3.4.1       scales_0.5.0         tidyproject_0.3.1   
+[49] stringi_1.1.6        reshape2_1.4.3       bindrcpp_0.2.2       latticeExtra_0.6-28 
+[53] xml2_1.1.1           nonmem2R_0.1.10      graphics_3.4.1       base_3.4.1          
+[57] RColorBrewer_1.1-2   tools_3.4.1          forcats_0.2.0        glue_1.3.0          
+[61] purrr_0.2.4          hms_0.3              yaml_2.1.14          parallel_3.4.1      
+[65] colorspace_1.3-2     rvest_0.3.2          memoise_1.1.0        bindr_0.1.1         
+[69] haven_1.1.0          methods_3.4.1       
