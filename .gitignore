@@ -1,14 +1,15 @@
 /.Rproj.user
 .Rproj.user
 
-# Do not version control project libraries
+# Project libraries
 ProjectLibrary/*
 
-# Do not version control info about nonmem runs 
+# Info about nonmem runs 
 Models/BaseModel/dir*
 Models/parafile*
 
 # Dont back up large figures and .html output
+*.RData
 Scripts/*.html
 Results/BaseModel/*.png
 Results/CovariateModel/*.png
