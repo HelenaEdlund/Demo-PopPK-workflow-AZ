@@ -1,2 +1,11 @@
 /.Rproj.user
 .Rproj.user
+
+# Do not version control info about nonmem runs 
+Models/BaseModel/dir*
+Models/parafile*
+
+# Dont back up large figures and .html output
+Scripts/*.html
+Results/BaseModel/*.png
+Results/CovariateModel/*.png
