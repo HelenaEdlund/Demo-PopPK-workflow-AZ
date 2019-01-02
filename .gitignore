@@ -1,6 +1,9 @@
 /.Rproj.user
 .Rproj.user
 
+# Do not version control project libraries
+ProjectLibrary/*
+
 # Do not version control info about nonmem runs 
 Models/BaseModel/dir*
 Models/parafile*
