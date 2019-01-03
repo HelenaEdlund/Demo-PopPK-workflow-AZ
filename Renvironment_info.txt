@@ -1,4 +1,4 @@
-Created at 2019-01-02 18:14:10 by kfqk581
+Created at 2019-01-03 13:22:15 by kfqk581
 
 R version 3.4.1 (2017-06-30)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -39,6 +39,6 @@ loaded via a namespace (and not attached):
 [49] stringi_1.1.6        reshape2_1.4.3       bindrcpp_0.2.2       latticeExtra_0.6-28 
 [53] xml2_1.1.1           nonmem2R_0.1.10      graphics_3.4.1       base_3.4.1          
 [57] RColorBrewer_1.1-2   tools_3.4.1          forcats_0.2.0        glue_1.3.0          
-[61] purrr_0.2.4          hms_0.3              yaml_2.1.14          parallel_3.4.1      
-[65] colorspace_1.3-2     rvest_0.3.2          memoise_1.1.0        bindr_0.1.1         
-[69] haven_1.1.0          methods_3.4.1       
+[61] purrr_0.2.4          hms_0.3              parallel_3.4.1       yaml_2.1.14         
+[65] colorspace_1.3-2     rvest_0.3.2          bindr_0.1.1          haven_1.1.0         
+[69] methods_3.4.1       
