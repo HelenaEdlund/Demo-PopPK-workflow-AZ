@@ -7,26 +7,13 @@
 # Dependencies: None
 ###################################################
 
-library(pmworkbench)
-
 # All programs that needs to be executed are sourced/rendered below in the order 
 # they should be executed. 
-
-
-# -------------------- 
-#  Project setup
-# --------------------
-source_dir("./Scripts/Setup")
-source_dir("./Scripts/Functions")
-# tidyproject checks
-Renvironment_info()
-check_session()
-
 
 # -------------------- 
 #  Read in source data and set stucture for R
 # --------------------
-source(file = file.path(scripts_dir, "s01_dataset_preparation.R"))
+source(file = file.path("Scripts", "s01_dataset_preparation.R"))
 
 
 
@@ -79,3 +66,11 @@ rmarkdown::render(input = file.path("Scripts", "s08_base_models_evaluation.Rmd")
 
 
 ## To be continued with covariate model development and reporting ##
+
+
+# -------------------- 
+#  Document environments and check you're compliant with the KM 
+# --------------------
+Renvironment_info()
+check_session()
+
