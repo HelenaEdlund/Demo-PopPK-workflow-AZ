@@ -1,0 +1,31 @@
+Variable Name,Label,Code,Decode,Description,R Type
+C,Excluded,c,Excluded,NA,Character
+NMSEQSID,Numeric sequential idenitifier,NA,NA,NA,Categorical
+TIME,Time after first dose,NA,NA,Time after first dose,Numeric
+TAPD,Time after prior dose,NA,NA,Time after dose,Numeric
+DV,Dependent variable,NA,NA,Observation,Numeric
+AMT,Drug amount,NA,NA,Drug amount,Numeric
+EVID,Event identifier,0,Observation,0,Categorical
+EVID,Event identifier,1,Dose,1,Categorical
+MDV,Missing DV,0,Observation,NA,Numeric
+MDV,Missing DV,1,Missing observation,NA,Numeric
+CMT,Compartment,1,Dose depot,Dose depot,Categorical
+CMT,Compartment,2,Plasma,Plasma,Categorical
+OCC,Occasion ,NA,NA,NA,Categorical
+BLQ,Below quantification limit,0,above LQ,Non-BLQ,Categorical
+BLQ,Below quantification limit,1,BLQ,BLQ,Categorical
+DOSE, Dose, NA,NA,NA,Categorical
+ADDL, Additional doses,NA,NA,NA,Categorical
+II, Dosing interval,NA,NA,NA,Categorical
+BWT,Baseline body weight,NA,NA,Body weight,Numeric
+AGE,Age,NA,NA,Age,Numeric
+BCRCL,Baseline creatinine clearance,NA,NA,Baseline creatinine clearance,Numeric
+SEXM,Sex,0,Female,Female,Categorical
+SEXM,Sex,1,Male,Male,Categorical
+RACE,Race,1,WHITE,White,Categorical
+RACE,Race,2,BLACK OR AFRICAN AMERICAN,Black/African American,Categorical
+RACE,Race,3,ASIAN,Asian,Categorical
+RACE,Race,9,OTHER,Other,Categorical
+STUDYID,Numeric study code,NA,NA,NA,Categorical
+DAY, Study day,NA,NA,Study day,Numeric
+COMMENT,Comment,NA,NA,Comment,Character

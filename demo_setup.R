@@ -16,7 +16,7 @@ template_download(overwrite = T) # overwrite does not seem to work
 
 # 3. Write source data and dataspec to file
 sourcedata <- pkData
-# dataspec <- pdDataSpec
+# dataspec <- pdDataSpec (added manually for now)
 write.csv(sourcedata, file = "SourceData/azd0000_20190102.csv", 
           quote = F, row.names = F, na = ".") 
 rm(sourcedata) #, dataspec)
