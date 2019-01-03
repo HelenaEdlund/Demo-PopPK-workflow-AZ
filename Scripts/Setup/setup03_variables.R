@@ -14,22 +14,13 @@
 # That is, it will need to be updated depending on the present data structure   
 
 # ------------------------------------------------------------------
-#  People
-# ------------------------------------------------------------------
-all_people <- list(
-  analyst_name = "Analyst", 
-  reviewer_name = "Reviewer",
-  approver_name = "Approver",
-  programmer_name = "Programmer") 
-
-# ------------------------------------------------------------------
 #  Data
 # ------------------------------------------------------------------
 
 # -------------------- 
 #  Source dataset
 # --------------------
-sourcedata_filename      <- "filename_deliverydate.csv"
+sourcedata_filename      <- "azd0000_20190102.csv"
 dataspec_filename        <- "dataVariablesSpecification.csv" 
 # used by pmxplore::r_data_structure
 
@@ -43,12 +34,11 @@ delivery_date  <-
   as.numeric
 
 # --------------------
-#  Drug and lloq
+#  DV and lloq
 # --------------------
-drug_name <- "drugname"
-dv_unit <- "ng/mL"
-LLOQ <- 1
-# molecularWeight <- # g/mol
+dv_name <- "AZD0000"
+dv_unit   <- "ng/mL"
+LLOQ      <- 1.0
 
 # --------------------
 #  Columns in data (used in dataset checkout and EDA)
@@ -90,7 +80,7 @@ all_cols <- c(cols_study_related, cols_numeric, cols_factors,
 # Reoccuring labels
 labs_TAPD <- "Time after dose (h)"
 labs_TAFD <- "Time after first dose (h)"
-labs_conc <- paste0(drug_name," concentration (", dv_unit,")")
+labs_conc <- paste0(dv_name," concentration (", dv_unit,")")
 
 # Re-occuring x-axis breaks
 tapd_breaks <- c(0, 2, 4, 6, 8, seq(from=12, to=200, by=6))
