@@ -18,7 +18,7 @@
 #  Source dataset
 # --------------------
 sourcedata_filename      <- "azd0000_20190102.csv"
-dataspec_filename        <- "dataVariablesSpecification.csv" 
+dataspec_filename        <- "dataspec_azd0000_20190102.csv" 
 # used by pmxplore::r_data_structure
 
 # delivery_date  <- "deliverydate"
@@ -35,51 +35,54 @@ delivery_date  <-
 # --------------------
 dv_name <- "AZD0000"
 dv_unit   <- "ng/mL"
-LLOQ      <- 1.0
+LLOQ      <- 0.15
 
 # --------------------
 #  Columns in data (used in dataset checkout and EDA)
 # --------------------
 # Define variables as they are expected to be based on protocol and data spec
-ostudies <- c("study1","study2")   # original names of studies that should be included
-studies  <- c(1,2)                 # numeric version 
-cohorts  <- c(1,2)                 # cohorts 
-# parts  <- c(1001,1002)           # parts 
-doses    <- c(25, 100, 150, 300)   # doses 
+studies  <- c(1,2)    # numeric version 
+doses    <- c(200)   # doses 
 
 # Define columns in dataset (and what type)
-cols_study_related <- 
-  c("OSTUDYID", "STUDYID", "COHORT","DOSE", "NMSEQSID", "OSID")
-# "PART"
+list_columns <- function(){
+  
+  study_related <- c("STUDYID", "DOSE", "NMSEQSID")
+  
+  # Continuous columns (not including covariates)
+  numeric <- c('TIME','TAPD','DV',"DAY")
+  
+  # Character/Categorical columns (not including covariates)
+  factors <- c('C','AMT',"ADDL","II",'OCC','MDV','CMT','BLQ','EVID',"COMMENT")
+  
+  # List of baseline continuous and categorical covariates
+  base_cat_cov  <- c("SEXM","RACE")
+  base_cont_cov <- c("AGE","BCRCL","BWT")
+  
+  # This list should contain all columns of your dataset
+  cols <- list(study_related = study_related, 
+               numeric = numeric, 
+               factors = factors, 
+               # cat_cov = cat_cov,
+               # cont_cov = cont_cov,
+               base_cat_cov = base_cat_cov,
+               base_cont_cov = base_cont_cov)
+  
+  all_cols <- unlist(cols, use.names = F)
+  
+  cols <- c(cols, list(all = all_cols))
+  
+  cols
+}
 
-# Continuous columns (not including covariates)
-cols_numeric <- c('TAFD','TAPD','DV','LNDV')
-
-## Character/Categorical columns (not including covariates)
-cols_factors <- c('C','AMT','OCC','MDV','CMT','BLQ','EVID',"FREQ", "COMMENT")
-
-## Lists of continuous and categorical covariates (which may change with time)
-# included these as examples here - they are not actually changing
-cols_cat_cov <- c("BRENAL")
-cols_cont_cov <- c("BWT","BBMI")
-
-## List of baseline continuous and categorical covariates (should not change with time)
-base_cat_cov  <- c("SEXM","RACE","ETHNIC","BRENAL")
-base_cont_cov <- c("AGE","BSCR","BEGFR","BWT","BHT","BBMI")
-
-# This vector should contain all columns of your dataset
-all_cols <- c(cols_study_related, cols_numeric, cols_factors, 
-              cols_cat_cov,cols_cont_cov,base_cat_cov,base_cont_cov)
-
-
-
+columns <- list_columns()
 
 # ------------------------------------------------------------------
 #  List lables and settings for plots used in EDA
 # ------------------------------------------------------------------
 # Reoccuring labels
 labs_TAPD <- "Time after dose (h)"
-labs_TAFD <- "Time after first dose (h)"
+labs_TIME <- "Time after first dose (h)"
 labs_conc <- paste0(dv_name," concentration (", dv_unit,")")
 
 # Re-occuring x-axis breaks
