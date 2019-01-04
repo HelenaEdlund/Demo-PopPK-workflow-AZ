@@ -24,14 +24,14 @@ source(file = file.path("Scripts", "s01_dataset_preparation.R"))
 # -------------------- 
 #  Dataset checkout
 # --------------------
-# Go through the script to make sure all relevant columns are included and checked
 rmarkdown::render(input=file.path("Scripts","s02_dataset_review.Rmd"))
+
 
 # -------------------- 
 # Summarize (a priori) excluded data
 # --------------------
 rmarkdown::render(input=file.path("Scripts","s03_summary_excluded_data.Rmd"), 
-                  params = list(print_results=F))
+                  params = list(print_results=T))
 
 # -------------------- 
 # Exploratory Data Analysis

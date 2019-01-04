@@ -19,7 +19,7 @@ source_dir("./Scripts/Functions")
 # Read in dataset
 # -----------------------------------------------
 # Data should b eplaced in the SourceData dir and not modified
-rawdata <- read.csv(file=file.path(all_dir[["source_data_dir"]], sourcedata_filename),
+rawdata <- read.csv(file=file.path(directories[["source_data_dir"]], sourcedata_filename),
                     stringsAsFactors=F, na.strings = c(".", "NA", "-99"))
 
 # remove C=C  (original data still in "rawdata")
@@ -50,7 +50,7 @@ add_variables <- function(dataset){
 # -----------------------------------------------
 data  <- 
   r_data_structure(data,
-                   data_spec = file.path(all_dir[["source_data_dir"]], dataspec_filename))
+                   data_spec = file.path(directories[["source_data_dir"]], dataspec_filename))
 # str(data)
 data  <- add_variables(data)
 
@@ -98,5 +98,5 @@ conc_data_study_split <-
 # -----------------------------------------------
 # Save environment to use in next scripts
 # -----------------------------------------------
-save.image(file = file.path(all_dir[["scripts_dir"]], "s01.RData"))
+save.image(file = file.path(directories[["scripts_dir"]], "s01.RData"))
 

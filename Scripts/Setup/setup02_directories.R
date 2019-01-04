@@ -11,7 +11,7 @@
 # This function is kept here to make it easy to add/remove
 # Kept in a function to not crowd gloabl environment with all dir names separately
 
-list_directories <- function(make = F){
+list_directories <- function(make = T){
   # Directories at activity level
   # do not remove the leading ".", it will cause problems with latex/knitr)
   scripts_dir       <- file.path(".", "Scripts")
@@ -76,4 +76,4 @@ list_directories <- function(make = F){
   return(all_dir)
 } 
 
-all_dir <- list_directories()
+directories <- list_directories()
