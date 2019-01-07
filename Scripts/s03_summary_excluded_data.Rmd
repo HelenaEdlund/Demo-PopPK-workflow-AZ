@@ -31,10 +31,6 @@ Load the dataset as prepared by "s01_dataset_preparation.R"
 source(file = file.path("./Scripts","Setup","setup01_rEnvironment.R"))
 load(file = file.path("./Scripts","s01.RData"))
 
-# The outputs from this scripts are: 
-# 1. a summary table of number of excluded data and reasons (split by >/< LLOQ)
-# 2. a table listing each excluded record
-# Both to be used in the report. 
 ```
 
 The outputs from this scripts are: 
