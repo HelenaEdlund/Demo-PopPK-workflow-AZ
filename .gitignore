@@ -11,5 +11,6 @@ Models/parafile*
 # Dont back up large figures and .html output
 *.RData
 Scripts/*.html
+Results/ExploratoryDataAnalysis/*.pdf
 Results/BaseModel/*.png
 Results/CovariateModel/*.png

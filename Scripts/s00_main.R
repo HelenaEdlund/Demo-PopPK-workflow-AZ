@@ -37,19 +37,16 @@ rmarkdown::render(input=file.path("Scripts","s03_summary_excluded_data.Rmd"),
 # Exploratory Data Analysis
 # --------------------
 rmarkdown::render(input = file.path("Scripts", "s04_eda_covariates.Rmd"), 
-                  params = list(print_results=F))
+                  params = list(print_results=T))
 rmarkdown::render(input = file.path("Scripts", "s05_eda_conc_time.Rmd"), 
                   params = list(print_results=F))
-rmarkdown::render(input = file.path("Scripts", "s06_eda_pk_linearity.Rmd"), 
-                  params = list(print_results=F))
-
 
 # -------------------- 
 # Preparation of NONMEM dataset(s)
 # --------------------
 # If print_csv is true the script outputs the dataset(s) to "DerivedData", 
 # otherwise it just saves the datasets and the names of the datasets s07.RData
-rmarkdown::render(input =file.path("Scripts","s07_nm_datasets.Rmd"), 
+rmarkdown::render(input =file.path("Scripts","s06_nm_datasets.Rmd"), 
                   params = list(print_csv=TRUE))
 # " Error in unlockBinding("params", <environment>) : no binding for "params" " can be ignored. 
 # It's because we need to delete "params" before the scripts is done. Output is created anyway

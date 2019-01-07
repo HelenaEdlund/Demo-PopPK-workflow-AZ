@@ -74,23 +74,22 @@ conc_data <- data %>%
   # Plot LLOQ values in figures as DV=LLOQ/2
   mutate(DV = ifelse(BLQ == "BLQ", LLOQ/2, DV))   
 
-# 2.2 dataset without BLQ samples
-conc_data_noBLQ <- conc_data %>% 
-  filter(BLQ=="Non-BLQ")
 
-# 2.3 List of subsets to generate pages with 12 individuals per page
+# 2.2 List of subsets to generate pages with 12 individuals per page
 conc_data_id_splits <- 
   ind_data_split(conc_data, id="NMSEQSID", 
                  n_per_page = 12)
 
-# 2.4 List of subset by study 
-conc_data <- conc_data %>% 
-  mutate(STUDYSPLIT = paste0("Study: ", STUDYID), 
-         STUDYSPLIT = factor(STUDYSPLIT,
-                             levels = c("Study: 1", "Study: 2")))
 
-conc_data_study_split <- 
-  split(conc_data, conc_data$STUDYSPLIT)
+
+# 2.3 List of subset by stratification (in this case study)
+conc_data <- conc_data %>% 
+  mutate(STRATSPLIT = paste0("Study: ", STUDYID), 
+         STRATSPLIT = factor(STRATSPLIT,
+                            levels = c("Study: 1", "Study: 2")))
+
+conc_data_strat_split <- 
+  split(conc_data, conc_data$STRATSPLIT)
 
 
 
