@@ -1,12 +1,12 @@
-Created at 2019-01-03 14:36:49 by kfqk581
+Created at 2019-01-07 20:00:23 by kfqk581
 
-R version 3.4.1 (2017-06-30)
+R version 3.5.1 (2018-07-02)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: CentOS Linux 7 (Core)
 
 Matrix products: default
-BLAS: /opt/scp/software/mro/3.4.1-foss-2017a/lib64/R/lib/libRblas.so
-LAPACK: /opt/scp/software/mro/3.4.1-foss-2017a/lib64/R/lib/libRlapack.so
+BLAS: /opt/scp/software/mro/3.5.1-foss-2017a/lib64/R/lib/libRblas.so
+LAPACK: /opt/scp/software/mro/3.5.1-foss-2017a/lib64/R/lib/libRlapack.so
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8       
@@ -18,27 +18,30 @@ attached base packages:
 character(0)
 
 other attached packages:
- [1] pmworkbench_0.1.0.9001 rmarkdown_1.5          devtools_1.13.0        rprojroot_1.2         
- [5] knitr_1.15.1           NMproject_0.3.1.9000   pmxplore_0.1.0         tidyverse_1.1.1       
- [9] stringr_1.2.0          gridExtra_2.2.1        GGally_1.3.2           zoo_1.8-0             
-[13] PKNCA_0.8.1           
+ [1] rmarkdown_1.11         pmworkbench_0.1.0.9001 devtools_1.13.0        rprojroot_1.2         
+ [5] knitr_1.21             NMprojectAZ_0.1.0      pmxplore_0.1.0         tableone_0.7.3        
+ [9] tidyverse_1.2.1        gridExtra_2.2.1        GGally_1.4.0           zoo_1.8-3             
+[13] PKNCA_0.8.5           
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.16         vcd_1.4-3            lubridate_1.6.0      mvtnorm_1.0-6       
- [5] lattice_0.20-35      tidyprojectAZ_0.1.0  tidyr_0.8.0          digest_0.6.12       
- [9] assertthat_0.2.0     RevoUtilsMath_10.0.0 lmtest_0.9-35        psych_1.7.5         
-[13] R6_2.2.2             cellranger_1.1.0     plyr_1.8.4           backports_1.0.5     
-[17] httr_1.3.1           ggplot2_3.0.0        utils_3.4.1          rlang_0.2.1         
-[21] lazyeval_0.2.0       readxl_1.0.0         splines2_0.2.8       splines_3.4.1       
-[25] RevoUtils_10.0.5     NMprojectAZ_0.1.0    readr_1.1.1          foreign_0.8-69      
-[29] munsell_0.4.3        broom_0.4.2          compiler_3.4.1       modelr_0.1.1        
-[33] pkgconfig_2.0.1      stats_3.4.1          mnormt_1.5-5         tibble_1.3.4        
-[37] grDevices_3.4.1      reshape_0.8.6        dplyr_0.7.4          withr_2.1.2         
-[41] MASS_7.3-47          grid_3.4.1           nlme_3.1-131         jsonlite_1.5        
-[45] gtable_0.2.0         git2r_0.19.0         magrittr_1.5         datasets_3.4.1      
-[49] scales_0.5.0         tidyproject_0.3.1    stringi_1.1.6        reshape2_1.4.3      
-[53] bindrcpp_0.2.2       latticeExtra_0.6-28  xml2_1.1.1           nonmem2R_0.1.10     
-[57] graphics_3.4.1       base_3.4.1           RColorBrewer_1.1-2   tools_3.4.1         
-[61] forcats_0.2.0        glue_1.3.0           purrr_0.2.4          hms_0.3             
-[65] parallel_3.4.1       yaml_2.1.14          colorspace_1.3-2     rvest_0.3.2         
-[69] bindr_0.1.1          haven_1.1.0          methods_3.4.1       
+ [1] httr_1.3.1           tidyr_0.8.0          jsonlite_1.5         splines_3.5.1       
+ [5] tidyproject_0.3.1    modelr_0.1.1         assertthat_0.2.0     highr_0.6           
+ [9] latticeExtra_0.6-28  grDevices_3.5.1      cellranger_1.1.0     yaml_2.2.0          
+[13] pillar_1.3.1         backports_1.0.5      lattice_0.20-35      glue_1.3.0          
+[17] base_3.5.1           digest_0.6.15        RColorBrewer_1.1-2   rvest_0.3.2         
+[21] colorspace_1.3-2     htmltools_0.3.6      Matrix_1.2-11        survey_3.31-5       
+[25] plyr_1.8.4           psych_1.7.5          nonmem2R_0.1.10      pkgconfig_2.0.1     
+[29] broom_0.4.2          haven_1.1.0          purrr_0.2.5          mvtnorm_1.0-6       
+[33] scales_0.5.0         RevoUtilsMath_11.0.0 git2r_0.23.0         tibble_1.4.2        
+[37] splines2_0.2.8       datasets_3.5.1       ggplot2_3.0.0        withr_2.1.2         
+[41] lazyeval_0.2.0       cli_1.0.0            mnormt_1.5-5         survival_2.41-3     
+[45] magrittr_1.5         crayon_1.3.4         readxl_1.0.0         tidyprojectAZ_0.1.0 
+[49] evaluate_0.10        methods_3.5.1        nlme_3.1-131         MASS_7.3-47         
+[53] xml2_1.1.1           forcats_0.2.0        foreign_0.8-69       utils_3.5.1         
+[57] tools_3.5.1          hms_0.3              stringr_1.2.0        munsell_0.4.3       
+[61] bindrcpp_0.2.2       stats_3.5.1          compiler_3.5.1       vcd_1.4-4           
+[65] rlang_0.3.0.1        NMproject_0.3.1.9000 grid_3.5.1           rstudioapi_0.7      
+[69] graphics_3.5.1       gtable_0.2.0         reshape_0.8.6        reshape2_1.4.3      
+[73] R6_2.2.2             lubridate_1.7.1      dplyr_0.7.6          bindr_0.1.1         
+[77] readr_1.1.1          stringi_1.1.6        parallel_3.5.1       Rcpp_0.12.18        
+[81] RevoUtils_11.0.1     tidyselect_0.2.4     xfun_0.4             lmtest_0.9-35       
