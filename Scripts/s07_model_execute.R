@@ -46,6 +46,9 @@ run(mod001, quiet=F)
 # use psn to create a new file based on run001
 # Tarj, can you please show how you handle this to not overwrite in case running again? 
 
+system_nm("update_inits run001.mod -output_model=run002.mod", 
+          dir = directories[["model_dir"]])
+# manually do the changes needed
 
 mod002 <- nm(cmd = "qpsn -t 40 -- execute run002.mod -directory=run002 -threads=1", 
              run_in = directories[["model_dir"]])
@@ -53,7 +56,7 @@ nm_tran(mod002)
 run(mod002, quiet=F)
 
 
-# Add execution of psn vpc (and bootstrap?)
+# Add:  execution of psn vpc 
 
 
 # ---------------
@@ -68,7 +71,7 @@ run(mod003, quiet=F)
 
 
 # ---------------
-#  SCM
+#  SCM - I want to include this to have a base and final model in the report example
 # ---------------
 
 # manually create a scm file
