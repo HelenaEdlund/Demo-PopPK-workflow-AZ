@@ -40,7 +40,7 @@ load(file = file.path("./Scripts","s06.RData"))
 # In this example the control file was just written manually and saved as run 001.mod
 
 mod001 <- nm(cmd = "qpsn -t 40 -- execute run001.mod -directory=run001 -threads=1", 
-             run_in = directories[["base_model_dir"]])
+             run_in = directories[["model_dir"]]) # automatically asumes 'Models' but 
 nm_tran(mod001)
 run(mod001, quiet=F)
 
@@ -59,6 +59,9 @@ mod002 <- nm(cmd = "qpsn -t 40 -- execute run002.mod -directory=run002 -threads=
              run_in = directories[["base_model_dir"]])
 nm_tran(mod002)
 run(mod002, quiet=F)
+
+
+
 
 
 # ---------------
