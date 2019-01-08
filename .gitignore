@@ -3,14 +3,24 @@
 
 # Project libraries
 ProjectLibrary/*
-
 # Info about nonmem runs 
 Models/BaseModel/dir*
 Models/parafile*
-
 # Dont back up large figures and .html output
 *.RData
 Scripts/*.html
 Results/ExploratoryDataAnalysis/*.pdf
 Results/BaseModel/*.png
 Results/CovariateModel/*.png
+Models/*tab*
+Models/*.phi
+Models/*.ext
+Models/*.cov
+Models/*.coi
+Models/*.cor
+Models/*.lst
+Models/*/
+Results
+psn-*
+hostfile*
+submitscript*
