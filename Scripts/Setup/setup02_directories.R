@@ -27,9 +27,9 @@ list_directories <- function(make = T){
   setup_dir         <- file.path(scripts_dir, "Setup")
   functions_dir     <- file.path(scripts_dir, "Functions")
   
-  #model_dir
-  base_model_dir      <- file.path(model_dir, "BaseModel")
-  covariate_model_dir <- file.path(model_dir, "CovariateModel")
+  # #model_dir - no need for this example
+  # base_model_dir      <- file.path(model_dir, "BaseModel")
+  # covariate_model_dir <- file.path(model_dir, "CovariateModel")
   
   #result_dir
   res_other_dir       <- file.path(results_dir, "Other")
@@ -55,8 +55,8 @@ list_directories <- function(make = T){
       source_data_dir = source_data_dir,
       setup_dir = setup_dir,
       functions_dir = functions_dir,
-      base_model_dir = base_model_dir,
-      covariate_model_dir = covariate_model_dir,
+      # base_model_dir = base_model_dir,
+      # covariate_model_dir = covariate_model_dir,
       res_other_dir = res_other_dir,
       res_eda_dir = res_eda_dir,
       res_base_model_dir = res_base_model_dir,
