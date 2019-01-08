@@ -1,5 +1,5 @@
 ;; 1. Based on: 
-;; 2. Description: 1 cmt, 1st order oral
+;; 2. Description: 2 cmt, 1st order oral
 ;; x1. Author: Helena Edlund
 
 $PROBLEM Demo PK workflow
@@ -13,7 +13,7 @@ $PROBLEM Demo PK workflow
 ;; 8. Covariate model:
 ;; No covariates
 ;; 9. Inter-individual variability:
-;; CL and V
+;; CL and V 
 ;; 10. Inter-occasion variability:
 ;; No IOV
 ;; 11. Residual variability:
@@ -21,46 +21,54 @@ $PROBLEM Demo PK workflow
 ;; 12. Estimation:
 ;; FOCE
 
-$INPUT C ID TIME TAPD AMT DV MDV EVID ADDL II CMT BLQ OCC STUDYID DOSE DAY AGE BCRCL BWT SEXM RACE RATE
+$INPUT C ID TIME TAPD AMT DV MDV EVID ADDL II CMT BLQ OCC STUDYID DOSE DAY AGE BCRCL BWT SEXM RACE RATE=DROP
 
 $DATA AZD0000_nm_20190102.csv IGNORE=@ IGNORE=(BLQ.EQ.1)
 
-$SUB ADVAN2 TRANS2
+$SUB ADVAN4 TRANS4
 
 $PK
 
-TVKA = EXP(THETA(1))
-MU_1 = LOG(TVKA)
-KA   = EXP(MU_1+ETA(1))
+TVKA = THETA(1)
+KA   = TVKA * EXP(ETA(1))
 
-TVCL  = EXP(THETA(2))
-MU_2 = LOG(TVCL)
-CL = EXP(MU_2+ETA(2))
+TVCL  = THETA(2)
+CL    = TVCL * EXP(ETA(2))
 
-TVV = EXP(THETA(3))
-MU_3 = LOG(TVV)
-V    = EXP(MU_3+ETA(3))
+TVV2  = THETA(3)
+V2    = TVV2 * EXP(ETA(3))
 
-S2 = V
+TVQ  = THETA(4)
+Q    = TVQ * EXP(ETA(4))
+
+TVV3 = THETA(5)
+V3   = TVV3 * EXP(ETA(5))
+
+S2 = V2
 
 $ERROR 
 
 IPRED = F
+
 W = SQRT(SIGMA(1,1)*IPRED**2 + SIGMA(2,2))  ; proportional + additive error
 IRES = DV-IPRED
 IWRES = IRES/W
+
 Y = IPRED + IPRED*EPS(1) + EPS(2)
 
-
 $THETA
-1          	; KA ; h-1 ; LOG
-9          	; CL ; L/h ; LOG
-280         ; V  ; L ; LOG
+1.5         ; KA  ; h-1 ; 
+9          	; CL  ; L/h ; 
+65          ; V2  ; L   ; 
+20         	; Q   ; L/h ; 
+200         ; V3  ; L   ; 
 
 $OMEGA 
-0 FIX 	          ; IIV_KA ; LOG
-0.1			          ; IIV_CL ; LOG
-0.1			          ; IIV_V  ; LOG
+0 FIX 	          ; IIV_KA ; 
+0.1			          ; IIV_CL ; 
+0.1			          ; IIV_V2 ; 
+0 FIX			        ; IIV_Q  ; 
+0 FIX			        ; IIV_V3 ; 
 
 $SIGMA
 0.1           	; prop error
@@ -72,5 +80,5 @@ $EST METHOD=1 INTER NOABORT MAXEVAL=9999 PRINT=1 NSIG=3 SIGL=9 MSFO=MSF001
 
 $COV MATRIX=R PRINT=E UNCONDITIONAL SIGL=10
 
-$TABLE ID TIME TAPD AMT DV MDV EVID ADDL II CMT BLQ OCC STUDYID DOSE DAY AGE BCRCL BWT SEXM RACE RATE PRED IPRED IWRES IRES CWRES NPDE KA CL V ETAS(1:LAST) 
+$TABLE ID TIME TAPD AMT DV MDV EVID ADDL II CMT BLQ OCC STUDYID DOSE DAY AGE BCRCL BWT SEXM RACE PRED IPRED IWRES IRES CWRES NPDE KA CL V2 Q V3 ETAS(1:LAST) 
 NOPRINT NOAPPEND ONEHEADER FORMAT=tF13.4 ESAMPLE=1000 SEED=190108854 FILE=tab001
