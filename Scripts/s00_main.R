@@ -52,14 +52,26 @@ rmarkdown::render(input =file.path("Scripts","s06_nm_datasets.Rmd"),
 # It's because we need to delete "params" before the scripts is done. Output is created anyway
 
 
+
+
+
+## Start here
+
+
+
+
+
 # -------------------- 
 # Model development and evaluation
 # --------------------
 # Execute base models 
-source(file=file.path("Scripts", "s08_base_models_execute.R"))
+source(file=file.path("Scripts", "s07_base_models_execute.R"))
+
 # Evaluation of base models 
-rmarkdown::render(input = file.path("Scripts", "s08_base_models_evaluation.Rmd"), 
+rmarkdown::render(input = file.path("Scripts", "s07_base_models_evaluation.Rmd"), 
                   params = list(print_results=F))
+
+
 
 
 ## To be continued with covariate model development and reporting ##

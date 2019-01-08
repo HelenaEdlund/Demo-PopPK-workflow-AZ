@@ -1,0 +1,2 @@
+"filename","Description"
+"AZD0000_nm_20190102.csv","Dataset prepared for NONMEM use: (i) only numerical columns selected, (ii) missing covariates imputed, (iii) NMSEQSID renamed to ID, (iv) RATE column added to estimate duration of zero-order absorption"

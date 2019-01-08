@@ -1,84 +1,44 @@
 ###################################################
-# s08_base_model_execute.R
-# Author: 
-# Created: 
+# s07_base_model_execute.R
+# Author: Helena Edlund
+# Created: 2019-01-08
 #    
-# Description: Generate and execute NONMEM runs for base model development
-# Dependencies: s07_nm_datasets.Rmd / s07.RData
+# Description: Execute and monitor NONMEM runs for base model development
+# Dependencies: s06_nm_datasets.Rmd / s06.RData
 ###################################################
 
 # ------------------------------------------------------------------
 #  Prepare environment
 # ------------------------------------------------------------------
+source(file = file.path("./Scripts","Setup","setup01_rEnvironment.R"))
 # load generated NM datasets
-load(file.path("Scripts", "s07.RData"))
+load(file = file.path("./Scripts","s06.RData"))
+
 
 # ------------------------------------------------------------------
-#  Load blueprint and templates for nonmem 
-# ------------------------------------------------------------------
-blueprint <- Blueprint$new("nonmem")
-templates <- load_templates("nonmem")
-models <- available_models("nonmem")
-
-# ------------------------------------------------------------------
-#  Define path to data relative the base model dir
-# ------------------------------------------------------------------
-derived_data_dir_rel_base <- paste0("../.", derived_data_dir)
-
-# ------------------------------------------------------------------
-#  Settings for plots
-# ------------------------------------------------------------------
-theme_set(theme_bw())
-update_geom_defaults("point", list(shape = 1))
-
-# ------------------------------------------------------------------
-#  Units
-# ------------------------------------------------------------------
-# Drug concentrations are in in mg/L, doses in mg and time(=TAFD) in hours. 
-# Hence, Ka in h-1, CL & Q in L/h, V1 & V2 in L, scaling=V
-unit_dv <- "mg/L"
-unit_time <- "h"
-unit_KA <- "h-1"
-unit_CL <- "L/h"
-unit_V  <- "L"
-# Used in comment convention ; Parameter name ; Unit ; Transformtion
-
-# ------------------------------------------------------------------
-#  Model development
+#  Ask Tarj to add: search for template nonmem scripts using code library
 # ------------------------------------------------------------------
 
-# initiating templates with dataset
-one_cmt <- blueprint %>% 
-  use_template(templates$compartmental) %>%
-  model_type(models$one_cmt_oral) %>% 
-  # Add data
-  with_data(nm_data) %>%
-  ignore("BLQ.EQ.1") %>% 
-  from_path(file.path(derived_data_dir_rel_base, nm_data_filename)) 
 
-two_cmt <- blueprint %>% 
-  use_template(templates$compartmental) %>%
-  model_type(models$two_cmt_oral) %>% 
-  # Add data
-  with_data(nm_data) %>%
-  ignore("BLQ.EQ.1") %>% 
-  from_path(file.path(derived_data_dir_rel_base, nm_data_filename)) 
 
-two_cmt_rate <- blueprint %>% 
-  use_template(templates$compartmental) %>%
-  model_type(models$two_cmt_oral) %>% 
-  # Add data
-  with_data(nm_data_comb) %>%
-  ignore("BLQ.EQ.1") %>% 
-  from_path(file.path(derived_data_dir_rel_base, nm_data_comb_filename)) 
+
 
 # ------------------------------------------------------------------
 #  1. Number of compartments
 # ------------------------------------------------------------------
 
+# paste(colnames(nm_data), collapse = " ")
+# nm_data_filename
+
 # ---------------
 #  Run001
 # ---------------
+mod001 <- nm(cmd = "qpsn -t 40 -- execute run001.mod -directory=run001 -threads=1", 
+             run_in = directories[["base_model_dir"]])
+nm_tran(mod001)
+run(mod001, quiet=F)
+
+
 model_no <- "001"
 
 if(model_no=="001"){
