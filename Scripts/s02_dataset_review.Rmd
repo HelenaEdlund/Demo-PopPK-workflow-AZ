@@ -1,5 +1,5 @@
 ---
-title: "Dataset review"
+title: "Source data review"
 author: "Helena Edlund"
 date: "2109-01-03"
 output: html_document
@@ -31,10 +31,7 @@ source(file = file.path("./Scripts","Setup","setup01_rEnvironment.R"))
 load(file = file.path("./Scripts","s01.RData"))
 ```
 
-
-# Review of the full dataset (C=="C" included). 
-
-## Structure and dimentions
+# Structure and dimentions
 The first 10 rows of the data: 
 ```{r, echo=T}
 head(rawdata, 10)
@@ -56,7 +53,7 @@ check_message(logical = any(duplicated(rawdata)))
 ```
 
 
-## Cross-checks of project setup files and dataset
+# Cross-checks of project setup files and dataset
 
 Are all columns in the dataset defined in "setup03_variables.R"?
 ```{r}
@@ -131,19 +128,22 @@ for(i in 1:nrow(doses)){
 # Merge 
 tmp <- rawdata %>% 
   full_join(dat_out) %>% 
-  arrange(NMSEQSID, TIME) %>% 
-  mutate(AMTFLAG = ifelse(!is.na(AMT), c(1:n()), NA))
+  arrange(NMSEQSID, TIME)
 
 rm(dat, dat_out, dosetime, doses)
 
 
-# If there are any rows before the first dose fill those with NA and do locf for the rest
+# Add a flag identifier for each dosing event (can be checked irrespectively of subject id)
+# 1. Check if there are any rows before the first dose. 
 na_index <- which(!is.na(tmp$AMT))[1]-1
-if(na_index==0){
-  tmp$AMTFLAG <- na.locf(tmp$AMTFLAG)
-}else{
-  tmp$AMTFLAG <- c(rep(NA, na_index), na.locf(tmp$AMTFLAG))
-}
+# 2. Create flag
+tmp <- tmp %>% 
+  mutate(AMTFLAG = ifelse(!is.na(AMT), c(1:n()), NA), 
+         AMTFLAG = ifelse(na_index==0, 
+                          na.locf(AMTFLAG), 
+                          # if rows before first dose, fill those with NA and do locf for the rest
+                          c(rep(NA, na_index), na.locf(AMTFLAG)))
+  )
 
 # Summarize similar to above
 tmp <- tmp %>%
