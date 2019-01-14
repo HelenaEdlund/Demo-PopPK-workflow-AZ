@@ -47,7 +47,7 @@ params$print_results
 
 ## Numeric summaries
 
-```{r Baseline Demographics, warning=F, message=F}
+```{r baseline_demographics, warning=F, message=F}
 # 1. This needs to be thought through again: how to handle this in variable file instead? 
 # 2. table one does not include missings, is that needed? 
 covMapping <- 
@@ -152,7 +152,7 @@ if(params$print_results){
 }
 ```
 
-### Categorical
+## Categorical covariates
 The diagonal graphs show bar charts of each covariate while the the off-diagonal graphs bar charts split by covariate. NA refers to not available, i.e., missing. 
 ```{r cat_cat_plot, fig.width=9, fig.height=9, message=F}
 cat_vs_cat <-
@@ -261,5 +261,6 @@ if(params$print_results){
          height = 6, width = 4.5, units = 'in', 
          device = cairo_pdf)
 }
+
 ```
 

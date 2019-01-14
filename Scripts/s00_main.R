@@ -52,15 +52,6 @@ rmarkdown::render(input =file.path("Scripts","s06_nm_datasets.Rmd"),
 # It's because we need to delete "params" before the scripts is done. Output is created anyway
 
 
-
-
-
-## Start here
-
-
-
-
-
 # -------------------- 
 # Model development and evaluation
 # --------------------

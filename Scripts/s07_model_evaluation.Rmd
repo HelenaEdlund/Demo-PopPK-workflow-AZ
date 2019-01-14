@@ -61,8 +61,9 @@ if(model_to_eval=="001"){
   # -----------------------
   #  Run summary
   # -----------------------
-  nonmem2R::sumoR(run_info$input$ctl) 
-
+  run_summary <- nonmem2R::sumoR(run_info$input$ctl) 
+  print(run_summary)
+  
   # # Or if you prefer the original sumo output:
   # system_cmd(paste0('sumo run', model_to_eval,".lst"), 
   #            dir=directories[["model_dir"]])

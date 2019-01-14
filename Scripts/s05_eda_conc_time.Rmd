@@ -10,6 +10,7 @@ output:
 params:
   print_results: FALSE
 ---
+
 ```{r setup, include=F}
 ###################################################
 # s05_eda_conc_time.Rmd
@@ -194,11 +195,6 @@ if(params$print_results){
 *Right*: un-transformed scale. *Left*: log-transformed y-axis. Lines connect data from one occasion within a subject. Colour indicate subject. Points indicate measured data. Dashed blue line show the lower limit of quantification. BLQ data is prited as LLOQ/2. 
 
 ```{r ConcTad, fig.height=3, fig.width=8.5, warning=F, message=F}
-# use max TAPD to set the same x axis on all graphs
-tapd_range <- conc_data %>% 
-  summarize(min = min(TAPD), 
-            max = max(TAPD))
-
 # List of plots
 plots <- vector("list", length(conc_data_strat_split))
 for(i in 1:length(conc_data_strat_split)){

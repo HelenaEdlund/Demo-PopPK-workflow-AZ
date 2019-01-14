@@ -1,10 +1,10 @@
 ###################################################
 # setup01_rEnvironment.R
 # 
-# Author: 
-# Created on: 
+# Author: Helena Edlund
+# Created on: 2019-01-07
 # Description: Prepare R environment by loading libraries and setting global options
-# Dependencies: setup02_directories.R
+# Dependencies: None
 ###################################################
 
 
