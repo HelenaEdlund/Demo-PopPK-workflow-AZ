@@ -1,0 +1,233 @@
+---
+title: "Model evaluation"
+author: "Helena Edlund"
+date: "`r format(Sys.time())`"
+output: 
+  html_document
+params:
+  model_to_eval: "001"
+  keep_png: TRUE
+---
+
+```{r setup, include=F}
+###################################################
+# s07_baseModelEvaluate.Rmd
+# Description: Base model evaluation
+# Dependencies: s05_NMDatasets.R, s06_baseModelExecute.R 
+###################################################
+# Settings to knit in top directory:
+# Everything after this chunk works with paths relative top level
+library(rprojroot)
+activity_root <- find_root(has_file("OpenProject.Rproj"))
+
+if(params$keep_png){
+  figPath <- file.path(activity_root,'Results',"Models","Figures",
+                       paste0("run", params$model_to_eval, "_"))
+  knitr::opts_chunk$set(echo=F, 
+                        dev = "png", dpi = 200, fig.width = 7, fig.height=5.4, 
+                        fig.path = figPath)
+}
+
+knitr::opts_knit$set(root.dir=activity_root) 
+# Note: R markdown opens a new R session, your global environment is not available.
+```
+
+
+```{r environmentPrep, message=F}
+# ------------------------------------------------------------------
+#  Prepare environment
+# ------------------------------------------------------------------
+# load packages
+source(file=file.path("Scripts","Setup","setup01_rEnvironment.R")) 
+```
+
+# Model evaluation for run `r params$model_to_eval`
+```{r}
+if(params$keep_png){
+  message <- paste("Figures in this document are stored under:\n", figPath)
+} else {
+  message <- "Figures in this document were not saved separately"
+}
+```
+
+`r message`
+
+```{r}
+# -----------------------
+#  Read in output files
+# -----------------------
+db <- xpose_data(runno = params$model_to_eval, 
+                 dir = directories[["model_dir"]])
+
+# -----------------------
+#  Run summary
+# -----------------------
+summary(db)
+
+# -----------------------
+#  Parameter summary
+# -----------------------
+prm_table(db)
+
+# -----------------------
+#  Graphical evaluation
+# -----------------------
+# Extract data and create sub datasets
+tab <- db$data$data[[1]]
+# tab <- r_data_structure(mytab, 
+#                         data_spec=dataSpecFileName, 
+#                         nm_output=T)
+tab <- tab %>% 
+  mutate(BLQ = factor(BLQ, levels = c(0,1), labels= c("Non-BLQ", "BLQ")), 
+         OCC = factor(OCC, levels = c(1,2,3)))
+
+tab <- as.data.frame(tab)
+tab <- add_variables(tab)
+
+concData <- tab[tab$EVID==0,]
+baseline <- concData[!duplicated(concData$ID),]
+```
+
+
+```{r basicGOF}
+grid.arrange(
+  gg_obs_vs_pred(concData, y=DV, x=PRED), 
+  gg_obs_vs_pred(concData, y=DV, x=IPRED), 
+  gg_residuals(concData, y=IWRES, x=TIME, absolute=T), 
+  gg_residuals(concData, y=CWRES, x=PRED), 
+  nrow=2)
+```
+
+```{r cwres}
+grid.arrange(
+  gg_residuals(concData, y=CWRES, x=TIME), 
+  gg_residuals(concData, y=CWRES, x=TAPD), 
+  gg_residuals(concData, y=CWRES, x=PRED), 
+  gg_qq_plot(concData, sample=CWRES),
+  nrow=2)
+```
+
+```{r npde}
+grid.arrange(
+  gg_residuals(concData, y=NPDE, x=TIME), 
+  gg_residuals(concData, y=NPDE, x=TAPD), 
+  gg_residuals(concData, y=NPDE, x=PRED), 
+  gg_qq_plot(concData, sample=NPDE),
+  nrow=2)
+```
+
+```{r eta_dist, message=F, warning=F}
+# etas in dataset
+allEtas <- names(tab)[str_detect(names(tab), "ETA")]
+
+# Remove only zeros
+x <- vector("logical", length(allEtas))
+for(i in 1:length(allEtas)){
+  x[i] <- all(tab[, allEtas[i]] == 0)
+}
+
+# etas to plot 
+etas <- allEtas[!x]
+
+if(length(etas) > 0){
+  ggpairs(baseline, columns = etas, 
+          diag = list(continuous = "barDiag", na.rm=T), 
+          upper = list(continuous = 'cor'), 
+          lower = list(continuous = 'smooth_loess'))
+}
+```
+
+```{r param_dist, message=F, warning=F}
+# parameters to plot
+allPar <- names(tab)[names(tab) %in% c("KA","CL","V","Q","V2","V3")]
+
+# Remove only zeros
+x <- vector("logical", length(allPar))
+for(i in 1:length(allPar)){
+  x[i] <- length(unique(tab[, allPar[i]])) == 1
+}
+
+# etas to plot 
+par <- allPar[!x]
+
+
+if(length(par) > 0){
+  ggpairs(baseline, columns = par, 
+          diag = list(continuous = "barDiag", na.rm=T), 
+          upper = list(continuous = 'cor'), 
+          lower = list(continuous = 'smooth_loess'))
+}
+```
+
+
+```{r individual_profiles}
+## ------ 2. Individual fits ----------
+# Takes time to print, comment out the ones you don't need
+individualSplits <- ind_data_split(concData, id="ID", n_per_page = 9)
+
+# TAD
+individualFits <- list(
+  gg_title_plot("Concentrations versus Time after dose"))
+
+p <- vector("list",length(individualSplits))
+for(i in 1:length(individualSplits)){
+  p[[i]] <- 
+    gg_conc_time_ind(individualSplits[[i]],
+                     x=TAPD, id=ID, occ=OCC, 
+                     facet_scales = NULL) +
+    guides(color = guide_legend(title="Occasion")) + 
+    labs(y=labs_conc, x=labs_TAPD) + 
+    theme(legend.position = "bottom")
+}
+individualFits <- c(individualFits, p)
+
+# TAD log Y
+individualFits$t2 <- 
+  gg_title_plot("Concentrations versus Time after dose \n\n Log y")
+
+p <- vector("list",length(individualSplits))
+for(i in 1:length(individualSplits)){
+  p[[i]] <- 
+    gg_conc_time_ind(individualSplits[[i]],
+                     x=TAPD, id=ID, occ=OCC, 
+                     facet_scales = NULL) + 
+    scale_y_log10() + 
+    guides(color = guide_legend(title="Occasion")) + 
+    labs(y=labs_conc, x=labs_TAPD) + 
+    theme(legend.position = "bottom")
+}
+individualFits <- c(individualFits, p)
+
+# TIME
+individualFits$t3 <- gg_title_plot("Concentrations versus Time")
+
+p <- vector("list",length(individualSplits))
+for(i in 1:length(individualSplits)){
+  p[[i]] <- 
+    gg_conc_time_ind(individualSplits[[i]],
+                     x=TIME, id=ID, occ=OCC) + 
+    guides(color = guide_legend(title="Occasion")) + 
+    labs(y=labs_conc, x=labs_TIME) +
+    theme(legend.position = "bottom")
+}
+individualFits <- c(individualFits, p)
+
+# TIME log Y
+individualFits$t4 <- 
+  gg_title_plot("Concentrations versus Time \n\n Log y")
+
+p <- vector("list",length(individualSplits))
+for(i in 1:length(individualSplits)){
+  p[[i]] <- 
+    gg_conc_time_ind(individualSplits[[i]],
+                     x=TIME, id=ID, occ=OCC) +
+    scale_y_log10() + 
+    guides(color = guide_legend(title="Occasion")) + 
+    labs(y=labs_conc, x=labs_TIME) +
+    theme(legend.position = "bottom")
+}
+individualFits <- c(individualFits, p)
+
+# Print
+walk(individualFits, grob_draw)
+```

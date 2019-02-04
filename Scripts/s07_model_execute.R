@@ -62,8 +62,6 @@ run(mod002, quiet=F)
 # ---------------
 #  Run003; 2 cmt, 0+1st order oral
 # ---------------
-# Tarj, can you add code here to extract this from the code library? 
-# Any other code you want to add? 
 mod003 <- nm(cmd = "qpsn -t 40 -- execute run003.mod -directory=run003 -threads=1", 
              run_in = directories[["model_dir"]])
 nm_tran(mod003)
