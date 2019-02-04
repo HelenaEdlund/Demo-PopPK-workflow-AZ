@@ -3,8 +3,6 @@ title: "Summary of excluded data"
 author: "Helena Edlund"
 date: "2019-01-04"
 output: html_document
-params:
-  print_results: TRUE
 ---
 
 ```{r setup, include=FALSE}
@@ -118,24 +116,23 @@ summaryExclConc
 
 
 ```{r, include=F}
-# Write summary table to file
-if(params$print_results){
-  write.csv(summaryExclConc,
-            file = file.path(directories[["res_eda_dir"]], "omittedConcDataSummary.csv"),
+# Write to file
+# Tab 1: summary
+fileName <- paste0("omittedConcDataSummary_", delivery_date, ".csv")
+write.csv(summaryExclConc,
+            file = file.path(directories[["res_eda_dir"]], fileName),
             row.names = F)
-}
 
-# Full listing to file
+# Tab 2: Full listing
 listingExcluded <- 
   excl_conc %>%  # in this case using excl_conc as no doses were excluded
   # excluded %>% 
   select(NMSEQSID,TIME,TAPD,DV,AMT,EVID,MDV,BLQ,DOSE,REASON)
 
-if(params$print_results){
-  write.csv(listingExcluded,
-            file = file.path(directories[["res_eda_dir"]], "omittedDataListing.csv"),
+fileName <- paste0("omittedDataListing_", delivery_date, ".csv")
+write.csv(listingExcluded,
+            file = file.path(directories[["res_eda_dir"]], fileName),
             row.names = F)
-}
 ```
 
 
