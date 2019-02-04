@@ -39,6 +39,7 @@ library(GGally)
 library(zoo)
 library(PKNCA)
 
+library(xpose)
 
 # -----------------------------------------------
 # Settings for ggplot
