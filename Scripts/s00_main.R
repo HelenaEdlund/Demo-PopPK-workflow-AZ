@@ -30,8 +30,7 @@ rmarkdown::render(input=file.path("Scripts","s02_dataset_review.Rmd"))
 # -------------------- 
 # Summarize (a priori) excluded data
 # --------------------
-rmarkdown::render(input=file.path("Scripts","s03_summary_excluded_data.Rmd"), 
-                  params = list(print_results=T))
+rmarkdown::render(input=file.path("Scripts","s03_summary_excluded_data.Rmd"))
 
 # -------------------- 
 # Exploratory Data Analysis
